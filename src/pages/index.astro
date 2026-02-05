@@ -30,19 +30,27 @@ const site = "bounce.it.com";
         background: var(--bg);
       }
 
-      img {
-        display: block;
+      picture, img {
         width: 100vw;
         height: 100dvh;
-        object-fit: contain;     /* show whole poster */
-        object-position: center; /* centered */
+        display: block;
+      }
+
+      img {
+        object-fit: cover;      /* fill screen nicely */
+        object-position: center;
       }
     </style>
   </head>
 
   <body>
     <main class="frame" aria-label={site}>
-      <img src="/landing.png" alt={site} />
+      <picture>
+        <!-- Phone: use 9:16 crop -->
+        <source media="(max-width: 768px)" srcset="/landing-mobile.png" />
+        <!-- Default: desktop -->
+        <img src="/landing-desktop.png" alt={site} />
+      </picture>
     </main>
   </body>
 </html>
