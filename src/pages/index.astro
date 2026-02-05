@@ -10,12 +10,12 @@ const site = "bounce.it.com";
     <title>{site}</title>
     <meta name="description" content={site} />
 
-    <!-- Optional: keep your existing favicon if you have one -->
+    <!-- Use your own favicon file if you have one -->
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <style>
       :root {
-        --bg: #0b0d12; /* close to your dark background */
+        --bg: #0b0d12;
       }
 
       * { box-sizing: border-box; }
@@ -28,25 +28,35 @@ const site = "bounce.it.com";
       }
 
       .frame {
-        height: 100vh;
         width: 100vw;
+        height: 100dvh;        /* mobile-safe viewport height */
         display: grid;
         place-items: center;
         background: var(--bg);
       }
 
+      /* Default (mobile + small screens): show full artwork */
       img {
         width: 100vw;
-        height: 100vh;
-        object-fit: cover;   /* shows the whole image */
+        height: 100dvh;
+        object-fit: contain;
         object-position: center;
         display: block;
+      }
+
+      /* Desktop and larger: fill the canvas (cropping OK) */
+      @media (min-width: 900px) {
+        img {
+          object-fit: cover;
+          object-position: center;
+        }
       }
     </style>
   </head>
 
   <body>
     <main class="frame" aria-label={site}>
+      <!-- Put your design image in /public as landing.png -->
       <img src="/landing.png" alt={site} />
     </main>
   </body>
