@@ -6,17 +6,12 @@ const site = "bounce.it.com";
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{site}</title>
     <meta name="description" content={site} />
 
-    <!-- Use your own favicon file if you have one -->
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
     <style>
-      :root {
-        --bg: #0b0d12;
-      }
+      :root { --bg: #121826; }
 
       * { box-sizing: border-box; }
       html, body { height: 100%; }
@@ -29,34 +24,24 @@ const site = "bounce.it.com";
 
       .frame {
         width: 100vw;
-        height: 100dvh;        /* mobile-safe viewport height */
+        height: 100dvh;
         display: grid;
         place-items: center;
         background: var(--bg);
       }
 
-      /* Default (mobile + small screens): show full artwork */
       img {
+        display: block;
         width: 100vw;
         height: 100dvh;
-        object-fit: contain;
-        object-position: center;
-        display: block;
-      }
-
-      /* Desktop and larger: fill the canvas (cropping OK) */
-      @media (min-width: 900px) {
-        img {
-          object-fit: cover;
-          object-position: center;
-        }
+        object-fit: contain;     /* show whole poster */
+        object-position: center; /* centered */
       }
     </style>
   </head>
 
   <body>
     <main class="frame" aria-label={site}>
-      <!-- Put your design image in /public as landing.png -->
       <img src="/landing.png" alt={site} />
     </main>
   </body>
